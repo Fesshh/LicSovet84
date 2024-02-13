@@ -1,2 +1,1 @@
-a = bool(True)
-print(type(a))
+print(f'abra\n\nbr')
