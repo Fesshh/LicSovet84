@@ -2,13 +2,18 @@ import telebot
 from telebot import types
 import psycopg2
 from config import host, user, password, db_name
-from datetime import date, timedelta, datetime
+from datetime import date, timedelta
 bot = telebot.TeleBot('6989942925:AAHi9jq8P3iw5zQc2lBF7b7ggNU85JlYXLk')
 NowDat = ''
 
 @bot.message_handler(commands=['start'])
 def main(message):
     bot.send_message(message.chat.id, 'Привет, напиши интересующую тебя дату в формате гггг-мм-дд, например 2024-01-01')
+    bot.register_next_step_handler(message, new_days)
+
+@bot.message_handler(commands=['back'])
+def main(message):
+    bot.send_message(message.chat.id, 'Напиши интересующую тебя дату в формате гггг-мм-дд, например 2024-01-01')
     bot.register_next_step_handler(message, new_days)
 
 
@@ -241,34 +246,49 @@ def zana(callback):
 
         if callback.data == 'zan1':
             cur.execute(f'UPDATE schedule SET lsn1 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 1 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan2':
             cur.execute(f'UPDATE schedule SET brk1 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 1 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan3':
             cur.execute(f'UPDATE schedule SET lsn2 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 2 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan4':
             cur.execute(f'UPDATE schedule SET brk2 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 2 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan5':
             cur.execute(f'UPDATE schedule SET lsn3 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 3 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan6':
             cur.execute(f'UPDATE schedule SET brk3 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 3 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan7':
             cur.execute(f'UPDATE schedule SET lsn4 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 4 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan8':
             cur.execute(f'UPDATE schedule SET brk4 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 4 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan9':
             cur.execute(f'UPDATE schedule SET lsn5 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 5 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan10':
             cur.execute(f'UPDATE schedule SET brk5 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 5 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan11':
             cur.execute(f'UPDATE schedule SET lsn6 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 6 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan12':
             cur.execute(f'UPDATE schedule SET brk6 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 6 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan13':
             cur.execute(f'UPDATE schedule SET lsn7 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 7 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan14':
             cur.execute(f'UPDATE schedule SET brk7 = 1 WHERE data = {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 7 перемену на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
         elif callback.data == 'zan15':
             cur.execute(f'UPDATE schedule SET lsn8 = 1 WHERE data =  {NowDat}')
+            bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 8 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "back"')
 
     except Exception as _ex:
         print('[INFO] Error while working with PostgreSQL', _ex)
