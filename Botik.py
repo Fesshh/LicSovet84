@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 import psycopg2
-from config import host, user, password, db_name
+### from config import host, user, password, db_name
 from datetime import date, timedelta
 bot = telebot.TeleBot('6989942925:AAHi9jq8P3iw5zQc2lBF7b7ggNU85JlYXLk')
 NowDat = ''
@@ -21,10 +21,10 @@ def new_days(message):
     global NowDat
     try:
         connection = psycopg2.connect(
-            host = host,
-            user = user,
-            password = password,
-            database = db_name
+            host = '127.0.0.1',
+            user = 'postgres',
+            password = 'Fesh7433',
+            database = 'LicSov84'
         )
         connection.autocommit = True
         cur = connection.cursor()
@@ -238,10 +238,10 @@ def new_days(message):
 def zana(callback):
     try:
         connection = psycopg2.connect(
-            host = host,
-            user = user,
-            password = password,
-            database = db_name
+            host = "127.0.0.1",
+            user = 'postgres',
+            password = 'Fesh7433',
+            database = 'LicSov84'
         )
         cur = connection.cursor()
         connection.autocommit = True
