@@ -1,4 +1,4 @@
-host = "127.0.0.1"
-user = 'postgres'
-password = 'Fesh7433'
-db_name = 'LicSov84'
+host = "localhost"
+user = 'grigorpa_sovet'
+password = 'Fesh_7433'
+db_name = 'grigorpa_sovet'

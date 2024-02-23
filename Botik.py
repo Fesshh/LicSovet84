@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
-import psycopg2
-### from config import host, user, password, db_name
+import pymysql
+from config import host, user, password, db_name
 from datetime import date, timedelta
 bot = telebot.TeleBot('6989942925:AAHi9jq8P3iw5zQc2lBF7b7ggNU85JlYXLk')
 NowDat = ''
@@ -20,11 +20,12 @@ def main(message):
 def new_days(message):
     global NowDat
     try:
-        connection = psycopg2.connect(
-            host = '127.0.0.1',
-            user = 'postgres',
-            password = 'Fesh7433',
-            database = 'LicSov84'
+        connection = pymysql.connect(
+            host = host,
+            port = 3306,
+            user = user,
+            password = password,
+            database = db_name
         )
         connection.autocommit = True
         cur = connection.cursor()
@@ -225,23 +226,24 @@ def new_days(message):
                   
 
     except Exception as _ex:
-        print('[INFO] Error while working with PostgreSQL', _ex)
+        print('[INFO] Error while working with MySQL', _ex)
     finally:
         if connection:
             cur.close()
             connection.close()
-            print("[INFO] PostgreSQL connection closed")
+            print("[INFO] MySQL connection closed")
 
 
 
 @bot.callback_query_handler(func = lambda callback:callback)
 def zana(callback):
     try:
-        connection = psycopg2.connect(
-            host = "127.0.0.1",
-            user = 'postgres',
-            password = 'Fesh7433',
-            database = 'LicSov84'
+        connection = pymysql.connect(
+            host = host,
+            port = 3306,
+            user = user,
+            password = password,
+            database = db_name
         )
         cur = connection.cursor()
         connection.autocommit = True
@@ -293,12 +295,12 @@ def zana(callback):
             bot.send_message( callback.message.chat.id, f'Отично, вы успешно заняли 8 урок на {NowDat}\n чтобы вернуться к выбору даты, напишите "/back"')
 
     except Exception as _ex:
-        print('[INFO] Error while working with PostgreSQL', _ex)
+        print('[INFO] Error while working with MySQL', _ex)
     finally:
         if connection:
             cur.close()
             connection.close()
-            print("[INFO] PostgreSQL connection closed")
+            print("[INFO] MySQL connection closed")
             
 
 
